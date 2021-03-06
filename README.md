@@ -1,2 +1,2 @@
 # my-blog
-My personal blog code, made with Django.
+My personal blog, made with Django.
