@@ -1,12 +1,21 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, PostImage
+
+
+class PostImageAdmin(admin.StackedInline):
+    model = PostImage
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'status', 'created_on')
+    inlines = [PostImageAdmin]
+    list_display = ('title', 'slug', 'status', 'created_on', 'last_updated',)
     list_filter = ('status',)
     search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ('title',)}
 
+    class Meta:
+        model = Post
+
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(PostImage)

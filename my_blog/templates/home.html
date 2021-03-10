@@ -3,12 +3,54 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for post in object_list %}
-        <div class="post-entry">
-            <h2><a href="">{{ post.title }}</a> </h2>
-            <h5><a href="">Posted by {{ post.author }} on {{ post.created_on }}</a> </h5>
-            <p>{{ post.body }}</p>
+
+
+<div class="container">
+    <h1>Popular Posts</h1>
+    <div class="card-group">
+      <div class="card">
+        <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
-    {% endfor %}
+      </div>
+      <div class="card">
+        <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 style="padding-top: 15px">Latest Posts</h1>
+    <div class="row">
+        <div class="col-md-12 mt-3 left">
+            {%  for post in object_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text text-muted h6">Posted by {{ post.author }} | {{ post.created_on }}</p>
+                    <p class="card-text">{{ post.body | safe | slice:":200" }}...</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Continue Reading &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
 </html>
