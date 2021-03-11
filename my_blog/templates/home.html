@@ -6,18 +6,18 @@
 
 
 <div class="container">
-    <h1>Popular Posts</h1>
+    <h1>Featured Posts</h1>
     <div class="card-group">
       <div class="card">
         <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title">{{ post }}</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
       <div class="card">
-        <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
+        <img src="/media/images/fall.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="card">
-        <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">
+        <img src="/media/images/Firefox_wallpaper.png" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
@@ -52,5 +52,26 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+
+      {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+      {% endif %}
+
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      {% endif %}
+
+      </ul>
+    </nav>
+</div>
+
 {% endblock content %}
 </html>

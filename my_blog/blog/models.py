@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 STATUS = (
     (0, "Draft"),
@@ -20,12 +21,15 @@ class Post(models.Model):
     image = models.ImageField(upload_to='images/', blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
 
-    # sort database results by created_on date, descending by default
+    # sort database results by created_on date, descending because of '-'
     class Meta:
         ordering = ['-created_on']
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[str(self.slug)])
 
 
 class PostImage(models.Model):
