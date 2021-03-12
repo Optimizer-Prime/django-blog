@@ -1,6 +1,8 @@
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import Post
 
+featured_post = Post.objects.get(slug='test-post')
+
 
 class BlogListView(ListView):
     queryset = Post.objects.filter(status=1).order_by('-created_on')

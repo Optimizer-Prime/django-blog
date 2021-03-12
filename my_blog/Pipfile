@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 whitenoise = "*"
 pillow = "*"
+django-taggit = "*"
 
 [dev-packages]
 

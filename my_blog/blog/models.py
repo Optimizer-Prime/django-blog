@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from taggit.managers import TaggableManager
+
 STATUS = (
     (0, "Draft"),
     (1, "Publish")
@@ -20,6 +22,7 @@ class Post(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    tags = TaggableManager()
 
     # sort database results by created_on date, descending because of '-'
     class Meta:
