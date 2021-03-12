@@ -18,3 +18,7 @@ class BlogDetailView(DetailView):
 # just displays the defined template as the page
 class AboutPageView(TemplateView):
     template_name = 'about.html'
+
+
+class PublicationsView(TemplateView):
+    template_name = 'publications.html'
