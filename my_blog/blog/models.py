@@ -10,8 +10,18 @@ STATUS = (
 
 
 class Post(models.Model):
+    CATEGORY_CHOICES = [
+        ('web_dev', 'Web Development'),
+        ('data_sci', 'Data Science'),
+        ('automation', 'Automation'),
+        ('hardware', 'Hardware'),
+        ('medicine', 'Medicine'),
+        ('misc', 'Miscellaneous'),
+    ]
+
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='misc')
     summary = models.CharField(max_length=255, blank=True, null=True)
     author = models.ForeignKey(
         'auth.User',
@@ -22,7 +32,7 @@ class Post(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     # sort database results by created_on date, descending because of '-'
     class Meta:
