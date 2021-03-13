@@ -36,7 +36,23 @@
 </div>
 
 <div class="container">
+
     <h1 style="padding-top: 15px">Latest Posts</h1>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Web Development</a></li>
+          <li><a class="dropdown-item" href="#">Data Science</a></li>
+          <li><a class="dropdown-item" href="#">Automation</a></li>
+          <li><a class="dropdown-item" href="#">Hardware</a></li>
+          <li><a class="dropdown-item" href="#">Medicine</a></li>
+          <li><a class="dropdown-item" href="#">Miscellaneous</a></li>
+        </ul>
+    </div>
+
     <div class="row">
         <div class="col-md-12 mt-3 left">
             {%  for post in object_list %}
