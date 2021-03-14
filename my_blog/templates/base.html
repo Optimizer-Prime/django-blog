@@ -47,22 +47,29 @@
                     </li>
                 </ul>
                 <div class="dropdown" style="padding-left: 10px">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                       Categories
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Web Development</a></li>
-                      <li><a class="dropdown-item" href="#">Data Science</a></li>
-                      <li><a class="dropdown-item" href="#">Automation</a></li>
-                      <li><a class="dropdown-item" href="#">Hardware</a></li>
-                      <li><a class="dropdown-item" href="#">Medicine</a></li>
-                      <li><a class="dropdown-item" href="#">Miscellaneous</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='web-dev' %}">
+                          Web Development</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='data-sci' %}">
+                          Data Science</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='automation' %}">
+                          Automation</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='hardware' %}">
+                          Hardware</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='medicine' %}">
+                          Medicine</a></li>
+                      <li><a class="dropdown-item" href="{% url 'category_home' category='misc' %}">
+                          Miscellaneous</a></li>
                     </ul>
                 </div>
                 <form class="d-flex" style="padding-left: 10px">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                 </form>
+                </form>
             </div>
         </div>
     </nav>
@@ -91,12 +98,12 @@
                 <div class="col-xs-6 col-md-3">
                     <h6>Categories</h6>
                     <ul class="footer-links">
-                        <li><a href="#">Web Development</a></li>
-                        <li><a href="#">Data Science</a></li>
-                        <li><a href="#">Automation</a></li>
-                        <li><a href="#">Hardware</a></li>
-                        <li><a href="#">Medicine</a></li>
-                        <li><a href="#">Miscellaneous</a></li>
+                        <li><a href="{% url 'category_home' category='web-dev' %}">Web Development</a></li>
+                        <li><a href="{% url 'category_home' category='data-sci' %}">Data Science</a></li>
+                        <li><a href="{% url 'category_home' category='automation' %}">Automation</a></li>
+                        <li><a href="{% url 'category_home' category='hardware' %}">Hardware</a></li>
+                        <li><a href="{% url 'category_home' category='medicine' %}">Medicine</a></li>
+                        <li><a href="{% url 'category_home' category='misc' %}">Miscellaneous</a></li>
                     </ul>
                 </div>
 

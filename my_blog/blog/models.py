@@ -3,25 +3,27 @@ from django.urls import reverse
 
 from taggit.managers import TaggableManager
 
-STATUS = (
-    (0, "Draft"),
-    (1, "Publish")
-)
-
 
 class Post(models.Model):
+
+    STATUS = (
+        ('draft', "Draft"),
+        ('published', "Published")
+    )
+
     CATEGORY_CHOICES = [
-        ('web_dev', 'Web Development'),
-        ('data_sci', 'Data Science'),
+        ('web-dev', 'Web Development'),
+        ('data-sci', 'Data Science'),
         ('automation', 'Automation'),
         ('hardware', 'Hardware'),
         ('medicine', 'Medicine'),
         ('misc', 'Miscellaneous'),
+        ('', 'None'),
     ]
 
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='misc')
+    category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='')
     summary = models.CharField(max_length=255, blank=True, null=True)
     author = models.ForeignKey(
         'auth.User',
@@ -31,7 +33,8 @@ class Post(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
     body = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.CharField(max_length=20, choices=STATUS, default='draft')
+    is_featured = models.BooleanField(default=False)
     tags = TaggableManager(blank=True)
 
     # sort database results by created_on date, descending because of '-'
