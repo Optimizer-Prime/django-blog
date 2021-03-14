@@ -63,11 +63,11 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="{% url 'category_home' category='web-dev' %}">Web Development</a></li>
-          <li><a class="dropdown-item" href="#">Data Science</a></li>
-          <li><a class="dropdown-item" href="#">Automation</a></li>
-          <li><a class="dropdown-item" href="#">Hardware</a></li>
-          <li><a class="dropdown-item" href="#">Medicine</a></li>
-          <li><a class="dropdown-item" href="#">Miscellaneous</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='data-sci' %}">Data Science</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='automation' %}">Automation</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='hardware' %}">Hardware</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='medicine' %}">Medicine</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='misc' %}">Miscellaneous</a></li>
         </ul>
     </div>
 

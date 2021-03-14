@@ -1,9 +1,10 @@
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import Post
 
 
+# try and rewrite as fxn based view, incorporating featured as context option
 class BlogListView(ListView):
     queryset = Post.objects.filter(status='published').order_by('-created_on')
     template_name = 'home.html'
@@ -23,14 +24,21 @@ class BlogDetailView(DetailView):
 
 
 def category_list_view(request, category):
-    context = {}
+    category_list = Post.objects.filter(status='published').filter(category=category).order_by('-created_on')
 
-    context['category_list'] = Post.objects.filter(status='published').filter(category=category).order_by('-created_on')
-
-    paginator = Paginator(context['category_list'], 5)
+    paginator = Paginator(category_list, 5)
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
 
+    try:
+        category_list = paginator.page(page_number)
+    except PageNotAnInteger:
+        category_list = paginator.page(1)
+    except EmptyPage:
+        category_list = paginator.page(paginator.num_pages)
+
+    context = {
+        'category_list': category_list,
+    }
     return render(request, 'category_home.html', context)
 
 
