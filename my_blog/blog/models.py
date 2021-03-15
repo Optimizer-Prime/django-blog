@@ -24,7 +24,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     category = models.CharField(max_length=200, choices=CATEGORY_CHOICES, default='')
-    summary = models.CharField(max_length=255, blank=True, null=True)
+    summary = models.CharField(max_length=255, default='')
     author = models.ForeignKey(
         'auth.User',
         on_delete=models.CASCADE,

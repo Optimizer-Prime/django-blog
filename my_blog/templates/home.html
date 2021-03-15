@@ -8,49 +8,20 @@
 
 
 <div class="container">
+
     <h1>Featured Posts</h1>
-{#    <div class="card-group">#}
-    <div class="row">
-        <div class="col-md-12 mt-3 left">
-            {%  for post in featured_list %}
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <p class="card-text text-muted h6">Posted by {{ post.author }} | {{ post.created_on }}</p>
-                    <p class="card-text">{{ post.body | safe | slice:":200" }}...</p>
-                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Continue Reading &rarr;</a>
-                </div>
-            </div>
-            {% endfor %}
+    <div class="card-group">
+        {% for post in featured_list %}
+        <div class="card">
+            <img src="media/{{ post.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.summary }}</p>
+                <p class="card-text"><small class="text-muted">{{ post.last_updated }}</small></p>
+             </div>
         </div>
+        {% endfor %}
     </div>
-{#        {% for post in featured_list %}#}
-{#        <div class="card">#}
-{#            <img src="/media/images/bear.jpeg" class="card-img-top" alt="...">#}
-{#            <div class="card-body">#}
-{#                <h5 class="card-title">{{ post.title }}</h5>#}
-{#                <p class="card-text">{{ post.body }}</p>#}
-{#                <p class="card-text"><small class="text-muted">{{ post.last_updated }}</small></p>#}
-{#             </div>#}
-{#        </div>#}
-{#        {% endfor %}#}
-{#      <div class="card">#}
-{#        <img src="/media/images/fall.jpg" class="card-img-top" alt="...">#}
-{#        <div class="card-body">#}
-{#          <h5 class="card-title">Card title</h5>#}
-{#          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>#}
-{#          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-{#        </div>#}
-{#      </div>#}
-{#      <div class="card">#}
-{#        <img src="/media/images/Firefox_wallpaper.png" class="card-img-top" alt="...">#}
-{#        <div class="card-body">#}
-{#          <h5 class="card-title">Card title</h5>#}
-{#          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>#}
-{#          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
 </div>
 
 <div class="container">
@@ -91,16 +62,16 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
 
-      {% if page_obj.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+      {% if main_list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.previous_page_number }}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.previous_page_number }}">{{ main_list.previous_page_number }}</a></li>
       {% endif %}
 
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.number }}">{{ main_list.number }}</a></li>
 
-      {% if page_obj.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      {% if main_list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.next_page_number }}">{{ main_list.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.next_page_number }}">Next</a></li>
       {% endif %}
 
       </ul>

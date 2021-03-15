@@ -1,21 +1,36 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import DetailView, TemplateView
+
 from .models import Post
 
 
-# try and rewrite as fxn based view, incorporating featured as context option
-class BlogListView(ListView):
-    queryset = Post.objects.filter(status='published').order_by('-created_on')
-    template_name = 'home.html'
-    paginate_by = 5
-    context_object_name = 'main_list'
+def blog_list_view(request):
+    """
+    Returns main list and featured list of posts for homepage.
+    :param request: standard parameter
+    :return: request, html template to use, dict of different contexts
+    """
+    main_list = Post.objects.filter(status='published').order_by('-created_on')
 
+    # returns the 3 most recent posts where is_featured = True
+    featured_list = Post.objects.filter(status='published').filter(is_featured=True).order_by('-created_on')[:3]
 
-class FeaturedView(ListView):
-    queryset = Post.objects.filter(status='published').filter(is_featured=True).order_by('-created_on')
-    # template_name = 'home.html'
-    context_object_name = 'featured_list'
+    paginator = Paginator(main_list, 5)
+    page_number = request.GET.get('page')
+
+    try:
+        main_list = paginator.page(page_number)
+    except PageNotAnInteger:
+        main_list = paginator.page(1)
+    except EmptyPage:
+        main_list = paginator.page(paginator.num_pages)
+
+    context = {
+        'main_list': main_list,
+        'featured_list': featured_list,
+    }
+    return render(request, 'home.html', context)
 
 
 class BlogDetailView(DetailView):
@@ -24,6 +39,12 @@ class BlogDetailView(DetailView):
 
 
 def category_list_view(request, category):
+    """
+    Returns list view of posts filtered based on category.
+    :param request: standard parameter
+    :param category: passed as kwarg from <category> tag in url
+    :return: request, html template to use, dict of different contexts
+    """
     category_list = Post.objects.filter(status='published').filter(category=category).order_by('-created_on')
 
     paginator = Paginator(category_list, 5)
