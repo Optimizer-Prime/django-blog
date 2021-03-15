@@ -11,7 +11,8 @@
                 <h1>{% block title %}{{ post.title }}{% endblock title %}</h1>
                 <p class="fs-3 fw-bolder">{{ post.summary }}</p>
                 <p class="text-muted">Posted by {{ post.author }} | {{ post.created_on }} | Last updated on
-                {{ post.last_updated }}</p>
+                {{ post.last_updated }}
+                <span class="badge bg-primary text-light">{{ post.get_category_display }}</span></p>
                 <p class="card-text">{{ post.body | safe }}</p>
             </div>
         </div>

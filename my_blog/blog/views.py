@@ -70,3 +70,7 @@ class AboutPageView(TemplateView):
 
 class PublicationsView(TemplateView):
     template_name = 'publications.html'
+
+
+class ContactView(TemplateView):
+    template_name = 'contact.html'
