@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.views.generic import DetailView, TemplateView
 
-from .models import Post
+from .models import Post, Publication
 
 
 def blog_list_view(request):
@@ -68,8 +68,13 @@ class AboutPageView(TemplateView):
     template_name = 'about.html'
 
 
-class PublicationsView(TemplateView):
-    template_name = 'publications.html'
+def publications_view(request):
+    publications_list = Publication.objects.order_by('-year_published')
+
+    context = {
+        'publications_list': publications_list,
+    }
+    return render(request, 'publications.html', context)
 
 
 class ContactView(TemplateView):

@@ -54,3 +54,25 @@ class PostImage(models.Model):
 
     def __str__(self):
         return self.post.title
+
+
+class Publication(models.Model):
+    TYPE = [
+        ('manuscript', 'Manuscript'),
+        ('abstract', 'Abstract'),
+    ]
+
+    title = models.TextField()
+    authors = models.TextField()
+    year_published = models.IntegerField()
+    article_type = models.CharField(max_length=255, choices=TYPE, default='abstract')
+    journal_name = models.CharField(max_length=255, blank=True, null=True)
+    volume = models.CharField(max_length=50, blank=True, null=True)
+    issue = models.CharField(max_length=50, blank=True, null=True)
+    doi = models.URLField(blank=True, null=True)
+
+    journal_link = models.URLField(blank=True, null=True)
+    download_link = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title

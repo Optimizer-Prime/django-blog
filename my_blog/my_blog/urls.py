@@ -18,12 +18,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from blog.views import AboutPageView, PublicationsView, ContactView
+from blog.views import AboutPageView, publications_view, ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('about/', AboutPageView.as_view(), name='about'),
-    path('publications/', PublicationsView.as_view(), name='publications'),
+    path('publications/', publications_view, name='publications'),
     path('contact/', ContactView.as_view(), name='contact'),
     path('', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
