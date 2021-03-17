@@ -53,3 +53,7 @@ class BlogTests(TestCase):
     def test_about_template_view(self):
         response = self.client.get('/about/')
         self.assertEqual(response.status_code, 200)
+
+    def test_publications_view(self):
+        response = self.client.get('/publications/')
+        self.assertEqual(response.status_code, 200)
