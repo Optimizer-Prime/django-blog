@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-3 left">
+            <div class="card-body">
+                <h1>{% block title %}Search Results{% endblock title %}</h1>
+            </div>
+        {% for result in search_results %}
+            <div class="card mb-4">
+                <div class="card-body">
+                <h2 class="card-title"><a href="{% url 'post_detail' result.slug %}">{{ result.title }}</a></h2>
+                <p class="fs-3 fw-bolder">{{ result.summary }}</p>
+                <p class="text-muted">Posted by {{ result.author }} | {{ result.created_on }} | Last updated on
+                {{ result.last_updated }}
+                <span class="badge bg-primary text-light">{{ result.get_category_display }}</span></p>
+                <p class="card-text">{{ result.body | safe | slice:":300"}}...</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+</html>

@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render
-from django.views.generic import DetailView, TemplateView
+from django.views.generic import DetailView, ListView, TemplateView
 
 from .models import Post, Publication
 
@@ -79,3 +80,20 @@ def publications_view(request):
 
 class ContactView(TemplateView):
     template_name = 'contact.html'
+
+
+class SearchResultsView(ListView):
+    model = Post
+    template_name = 'search_results.html'
+
+    # tags = Post.objects.get_tag_list(Post.tags)
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        search_results = Post.objects.filter(
+            Q(title__icontains=query) | Q(body__icontains=query) | Q(summary__icontains=query)
+        )
+        return search_results
+
+    # adding this makes search page display results
+    context_object_name = 'search_results'
