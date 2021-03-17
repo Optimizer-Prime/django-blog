@@ -28,6 +28,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="fs-3 fw-bolder">{{ post.summary }}</p>
                     <p class="card-text text-muted h6">Posted by {{ post.author }} | {{ post.created_on }}
                         <span class="badge bg-primary text-light">{{ post.get_category_display }}</span></p>
                     <p class="card-text">{{ post.body | safe | slice:":200" }}...</p>

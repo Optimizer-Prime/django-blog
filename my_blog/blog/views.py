@@ -86,11 +86,9 @@ class SearchResultsView(ListView):
     model = Post
     template_name = 'search_results.html'
 
-    # tags = Post.objects.get_tag_list(Post.tags)
-
     def get_queryset(self):
         query = self.request.GET.get('q')
-        search_results = Post.objects.filter(
+        search_results = Post.objects.filter(status='published').filter(
             Q(title__icontains=query) | Q(body__icontains=query) | Q(summary__icontains=query)
         )
         return search_results
