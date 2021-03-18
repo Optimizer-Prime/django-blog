@@ -16,7 +16,7 @@ class Post(models.Model):
         ('data-sci', 'Data Science'),
         ('automation', 'Automation'),
         ('hardware', 'Hardware'),
-        ('medicine', 'Medicine'),
+        ('health', 'Health'),
         ('misc', 'Miscellaneous'),
         ('', 'None'),
     ]
