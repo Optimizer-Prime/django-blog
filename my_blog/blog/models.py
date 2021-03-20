@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 
 
 class Post(models.Model):
+    """Defines the model for each blog post. """
 
     STATUS = (
         ('draft', "Draft"),
@@ -49,6 +50,7 @@ class Post(models.Model):
 
 
 class PostImage(models.Model):
+    """Allows additional images beyond the one defined in the Post class to be added and associated with a post."""
     post = models.ForeignKey(Post, default=None, on_delete=models.CASCADE)
     images = models.FileField(upload_to='images/')
 
@@ -57,6 +59,7 @@ class PostImage(models.Model):
 
 
 class Publication(models.Model):
+    """Defines typical attributes of a scientific publication."""
     TYPE = [
         ('manuscript', 'Manuscript'),
         ('abstract', 'Abstract'),

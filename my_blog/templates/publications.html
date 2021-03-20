@@ -17,6 +17,7 @@
                     <p>{{ pub.authors }}</p>
                         <p><span class="badge bg-danger text-light">{{ pub.get_article_type_display }}</span>
                         | {{ pub.year_published}}
+                        <!-- all content below is not required, displays if value present -->
                         {% if pub.journal_name != None %} | {{ pub.journal_name }} {% endif %}
                         {% if pub.volume != None %} | Vol. {{ pub.volume }} {% endif %}
                             {% if pub.issue != None %} | Issue {{ pub.issue }} {% endif %}</p>

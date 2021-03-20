@@ -17,7 +17,7 @@ def blog_list_view(request):
     # returns the 3 most recent posts where is_featured = True
     featured_list = Post.objects.filter(status='published').filter(is_featured=True).order_by('-created_on')[:3]
 
-    paginator = Paginator(main_list, 5)
+    paginator = Paginator(main_list, 5)  # 5 items per page
     page_number = request.GET.get('page')
 
     try:
@@ -35,6 +35,7 @@ def blog_list_view(request):
 
 
 class BlogDetailView(DetailView):
+    """Detailed view for each blog post."""
     model = Post
     template_name = 'post_detail.html'
 
@@ -48,7 +49,7 @@ def category_list_view(request, category):
     """
     category_list = Post.objects.filter(status='published').filter(category=category).order_by('-created_on')
 
-    paginator = Paginator(category_list, 5)
+    paginator = Paginator(category_list, 5)  # 5 items per page
     page_number = request.GET.get('page')
 
     try:
@@ -64,12 +65,17 @@ def category_list_view(request, category):
     return render(request, 'category_home.html', context)
 
 
-# just displays the defined template as the page
 class AboutPageView(TemplateView):
+    """Displays the about.html page as-is."""
     template_name = 'about.html'
 
 
 def publications_view(request):
+    """
+    Returns publications_list for display on publications page.
+    :param request: standard parameter
+    :return: request, html template to use, dict of contexts
+    """
     publications_list = Publication.objects.order_by('-year_published')
 
     context = {
@@ -79,10 +85,12 @@ def publications_view(request):
 
 
 class ContactView(TemplateView):
+    """Displays contact page as-is."""
     template_name = 'contact.html'
 
 
 class SearchResultsView(ListView):
+    """Creates search result queryset using given query."""
     model = Post
     template_name = 'search_results.html'
 

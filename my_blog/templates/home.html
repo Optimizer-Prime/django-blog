@@ -4,7 +4,7 @@
 
 {% block content %}
 
-
+<!-- Featured posts section -->
 <div class="container">
 
     <h1>Featured Posts</h1>
@@ -21,7 +21,9 @@
         {% endfor %}
     </div>
 </div>
+<!-- end featured posts -->
 
+<!-- Latest posts section -->
 <div class="container">
 
     <h1 style="padding-top: 15px">Latest Posts</h1>
@@ -35,7 +37,7 @@
           <li><a class="dropdown-item" href="{% url 'category_home' category='data-sci' %}">Data Science</a></li>
           <li><a class="dropdown-item" href="{% url 'category_home' category='automation' %}">Automation</a></li>
           <li><a class="dropdown-item" href="{% url 'category_home' category='hardware' %}">Hardware</a></li>
-          <li><a class="dropdown-item" href="{% url 'category_home' category='health' %}">Health</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='health' %}">Healthk</a></li>
           <li><a class="dropdown-item" href="{% url 'category_home' category='misc' %}">Miscellaneous</a></li>
         </ul>
     </div>
@@ -56,6 +58,7 @@
         </div>
     </div>
 </div>
+<!-- end latest posts -->
 
 <div class="container">
     <nav aria-label="Page navigation example">
