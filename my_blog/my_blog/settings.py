@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'blog.apps.BlogConfig',
+    'django_summernote',
     'taggit',
 ]
 
@@ -141,3 +142,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 MEDIA_URL = '/media/'
+
+# needed for summernote app
+X_FRAME_OPTIONS = 'SAMEORIGIN'

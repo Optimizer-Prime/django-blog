@@ -38,8 +38,7 @@ class BlogTests(TestCase):
     def test_post_list_view(self):
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
-        # doesn't return 'test body', unknown reason
-        # self.assertContains(response, 'test body')
+        self.assertEqual(f'{self.post.body}', 'test body')
         self.assertTemplateUsed(response, 'home.html')
 
     def test_post_detail_view(self):

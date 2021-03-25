@@ -9,6 +9,7 @@ whitenoise = "*"
 pillow = "*"
 django-taggit = "*"
 psycopg2-binary = "*"
+django-summernote = "*"
 
 [dev-packages]
 

@@ -33,5 +33,6 @@ urlpatterns = [
     path('contact/', ContactView.as_view(), name='contact'),
     path('search/', SearchResultsView.as_view(), name='search_results'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+    path('summernote/', include('django_summernote.urls')),
     path('', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
