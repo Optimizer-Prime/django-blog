@@ -14,7 +14,7 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5>{{ pub.title }}</h5>
-                    <p>{{ pub.authors }}</p>
+                    <p>{{ pub.authors | safe }}</p>
                         <p><span class="badge bg-danger text-light">{{ pub.get_article_type_display }}</span>
                         | {{ pub.year_published}}
                         <!-- all content below is not required, displays if value present -->
