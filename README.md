@@ -14,4 +14,4 @@ Has typical features of a basic blog. Since it's my personal blog I decided agai
 - About page for further info about you, the blog, etc.
 - Contact page
 - Basic search function that searches post title, summary, and body
-- Footer with about me blub, quick links, and social media links
+- Footer with about me blurb, quick links, and social media links
