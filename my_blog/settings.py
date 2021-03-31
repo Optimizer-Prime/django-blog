@@ -108,15 +108,19 @@ LOGGING = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myblog',
-        'USER': 'blogadmin',
-        'PASSWORD': env.str("DATABASE_PASS"),
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    "default": env.dj_db_url("DATABASE_URL")
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'myblog',
+#         'USER': 'blogadmin',
+#         'PASSWORD': env.str("DATABASE_PASS"),
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Password validation
