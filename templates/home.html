@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Featured posts section -->
+<div class="container">
+
+    <h1>Featured Posts</h1>
+    <div class="card-group">
+        {% for post in featured_list %}
+        <div class="card">
+            <img src="media/{{ post.image }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h5>
+                <p class="card-text">{{ post.summary }}</p>
+                <p class="card-text"><small class="text-muted">{{ post.last_updated }}</small></p>
+             </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- end featured posts -->
+
+<!-- Latest posts section -->
+<div class="container">
+
+    <h1 style="padding-top: 15px">Latest Posts</h1>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{% url 'category_home' category='web-dev' %}">Web Development</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='data-sci' %}">Data Science</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='automation' %}">Automation</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='hardware' %}">Hardware</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='health' %}">Health</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='misc' %}">Miscellaneous</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-3 left">
+            {%  for post in main_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title"><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></h2>
+                    <p class="fs-3 fw-bolder">{{ post.summary }}</p>
+                    <p class="card-text text-muted h6">Posted by {{ post.author }} | {{ post.created_on }}
+                        <span class="badge bg-primary text-light">{{ post.get_category_display }}</span></p>
+                    <p class="card-text">{{ post.body | safe | slice:":200" }}...</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- end latest posts -->
+
+<div class="container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+
+      {% if main_list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.previous_page_number }}">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.previous_page_number }}">{{ main_list.previous_page_number }}</a></li>
+      {% endif %}
+
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.number }}">{{ main_list.number }}</a></li>
+
+      {% if main_list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.next_page_number }}">{{ main_list.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ main_list.next_page_number }}">Next</a></li>
+      {% endif %}
+
+      </ul>
+    </nav>
+</div>
+
+{% endblock content %}
+</html>

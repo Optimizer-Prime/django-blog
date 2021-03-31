@@ -4,8 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django = "*"
+whitenoise = "*"
+pillow = "*"
+django-taggit = "*"
+psycopg2-binary = "*"
+django-summernote = "*"
+gunicorn = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.8"
+
+[packages.environs]
+extras = [ "django",]

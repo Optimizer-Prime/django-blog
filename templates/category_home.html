@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>Latest Posts</h1>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+          Categories
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="{% url 'category_home' category='web-dev' %}">Web Development</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='data-sci' %}">Data Science</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='automation' %}">Automation</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='hardware' %}">Hardware</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='health' %}">Health</a></li>
+          <li><a class="dropdown-item" href="{% url 'category_home' category='misc' %}">Miscellaneous</a></li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-3 left">
+            {%  for post in category_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="fs-3 fw-bolder">{{ post.summary }}</p>
+                    <p class="card-text text-muted h6">Posted by {{ post.author }} | {{ post.created_on }}
+                        <span class="badge bg-primary text-light">{{ post.get_category_display }}</span></p>
+                    <p class="card-text">{{ post.body | safe | slice:":200" }}...</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary">Continue Reading &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Pagination -->
+<div class="container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+
+      {% if category_list.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ category_list.previous_page_number }}">
+            Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ category_list.previous_page_number }}">
+            {{ category_list.previous_page_number }}</a></li>
+      {% endif %}
+
+        <li class="page-item"><a class="page-link" href="?page={{ category_list.number }}">
+            {{ category_list.number }}</a></li>
+
+      {% if category_list.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ category_list.next_page_number }}">
+            {{ category_list.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ category_list.next_page_number }}">
+            Next</a></li>
+      {% endif %}
+
+      </ul>
+    </nav>
+</div>
+
+{% endblock content %}
+</html>
