@@ -10,6 +10,7 @@ pillow = "*"
 django-taggit = "*"
 psycopg2-binary = "*"
 django-summernote = "*"
+gunicorn = "*"
 
 [dev-packages]
 
